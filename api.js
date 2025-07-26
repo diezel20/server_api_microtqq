@@ -114,7 +114,10 @@ await connectDB().then(function(){
             response.status(500).json({ error: "Error server" });
           }
     })
-
+    .get('/all-data',async function(request , response){
+        const data = await FieldTemperatureDate.find()
+        response.json({data : data})
+    } )
     // server started 
     .listen(PORT ,'0.0.0.0', function(){
         console.log(`Server started on the port ${PORT}`)
