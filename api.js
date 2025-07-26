@@ -27,14 +27,14 @@ await connectDB().then(function(){
 
     // update tmpture 
     .get('/', function(request , response){
-        response.send('hello')
+        response.send('API_SERVER_MICROTQQ')
     })
     .get('/update', async function(request , response){
       const { api_key , field1, field2, field3 } = request.query;
 
   
-      if(api_key !== API_KEY) {
-          return response.status(401).json({message : 'api key not valid'})
+      if(api_key !== API_KEY || api_key==null) {
+          return response.status(401).json({message : 'api key not valid or not found'})
       }
 
       if (!field1 || !field2 || !field3) {
@@ -115,8 +115,12 @@ await connectDB().then(function(){
           }
     })
     .get('/all-data',async function(request , response){
+        const {api_key} = request.query
+        if(api_key!==API_KEY || api_key==null ) {
+          return response.status(401).json({message : 'api key not valid or not found'})
+        }
         const data = await FieldTemperatureDate.find()
-        response.json({data : data})
+        response.status(200).json({data : data})
     } )
     // server started 
     .listen(PORT ,'0.0.0.0', function(){
