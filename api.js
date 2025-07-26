@@ -3,6 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import { config } from 'dotenv';
+import mongoose from 'mongoose';
 
 // import tools db 
 import connectDB from './db/config.js';
