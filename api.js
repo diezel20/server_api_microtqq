@@ -30,14 +30,14 @@ await connectDB().then(function(){
         response.status(200).send('API_SERVER_MICROTQQ')
     })
     .get('/update', async function(request , response){
-      const {field1, field2, field3 } = request.query;
+      const {temp1, temp2, temp3 } = request.query;
 
-      if (!field1 || !field2 || !field3) {
+      if (!temp1 || !temp2 || !temp3) {
         return response.status(400).json({ message: 'Missing temperature fields' });
       }   
-      const val1 = parseFloat(field1);
-      const val2 = parseFloat(field2);
-      const val3 = parseFloat(field3);
+      const val1 = parseFloat(temp1);
+      const val2 = parseFloat(temp2);
+      const val3 = parseFloat(temp3);
       if (isNaN(val1) || isNaN(val2) || isNaN(val3)) {
           return response.status(400).json({ message: 'Temperature fields must be valid numbers.' });
       }
